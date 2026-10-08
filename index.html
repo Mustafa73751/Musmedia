@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>MusMedia</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="logo">Mus<span>Media</span></div>
+      <button class="nav active" data-page="home">⌂ <span>Home</span></button>
+      <button class="nav" data-page="discover">⌕ <span>Discover</span></button>
+      <button class="nav" data-page="messages">✉ <span>Messages</span></button>
+      <button class="nav" data-page="create">＋ <span>Create</span></button>
+      <button class="nav" data-page="profile">◉ <span>Profile</span></button>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div class="mobile-logo">Mus<span>Media</span></div>
+        <div class="search">⌕ <input id="searchInput" placeholder="Search MusMedia"></div>
+        <button class="avatar">M</button>
+      </header>
+
+      <section id="home" class="page active-page">
+        <div class="stories">
+          <div class="story add-story">＋<small>Your story</small></div>
+          <div class="story"><div class="story-img a">A</div><small>Amir</small></div>
+          <div class="story"><div class="story-img b">S</div><small>Sam</small></div>
+          <div class="story"><div class="story-img c">J</div><small>Jay</small></div>
+          <div class="story"><div class="story-img d">N</div><small>Noah</small></div>
+        </div>
+
+        <div id="feed"></div>
+      </section>
+
+      <section id="discover" class="page">
+        <div class="page-title"><h1>Discover</h1><p>Find people and content you might like.</p></div>
+        <div class="discover-grid" id="discoverGrid"></div>
+      </section>
+
+      <section id="messages" class="page">
+        <div class="page-title"><h1>Messages</h1><p>Chat with your friends.</p></div>
+        <div class="messages-layout">
+          <div class="chat-list">
+            <button class="chat active" data-name="Amir"><div class="mini-avatar a">A</div><div><b>Amir</b><small>Yo, you seen this?</small></div></button>
+            <button class="chat" data-name="Sam"><div class="mini-avatar b">S</div><div><b>Sam</b><small>That post was cold 😂</small></div></button>
+            <button class="chat" data-name="Jay"><div class="mini-avatar c">J</div><div><b>Jay</b><small>Football tomorrow?</small></div></button>
+          </div>
+          <div class="chat-window">
+            <div class="chat-header"><div class="mini-avatar a">A</div><b id="chatName">Amir</b></div>
+            <div class="chat-body" id="chatBody">
+              <div class="bubble other">Yo bro 👊</div><div class="bubble other">You seen the new post?</div><div class="bubble mine">Yeah 😂 MusMedia is looking cold</div>
+            </div>
+            <form id="messageForm" class="message-box"><input id="messageInput" placeholder="Message..."><button>Send</button></form>
+          </div>
+        </div>
+      </section>
+
+      <section id="create" class="page">
+        <div class="page-title"><h1>Create</h1><p>Share something with MusMedia.</p></div>
+        <form class="create-card" id="postForm">
+          <div class="post-author"><div class="avatar">M</div><b>Mustafa</b></div>
+          <textarea id="postText" placeholder="What's happening?"></textarea>
+          <div class="upload-box">🎥 <span>Add a photo or video</span><input type="file" id="mediaInput" accept="image/*,video/*"></div>
+          <div id="fileName"></div>
+          <button class="primary" type="submit">Post to MusMedia</button>
+        </form>
+      </section>
+
+      <section id="profile" class="page">
+        <div class="profile-head">
+          <div class="profile-avatar">M</div>
+          <div><h1>Mustafa</h1><p>@musmediauser</p><div class="stats"><b>24 <span>Posts</span></b><b>312 <span>Followers</span></b><b>184 <span>Following</span></b></div></div>
+          <button class="outline">Edit profile</button>
+        </div>
+        <div class="profile-tabs"><b>Posts</b><b>Videos</b><b>Tagged</b></div>
+        <div class="profile-grid">
+          <div>🎬</div><div>🏆</div><div>⚽</div><div>🌆</div><div>🎥</div><div>🔥</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <nav class="bottom-nav">
+    <button class="nav active" data-page="home">⌂</button><button class="nav" data-page="discover">⌕</button><button class="nav" data-page="create">＋</button><button class="nav" data-page="messages">✉</button><button class="nav" data-page="profile">◉</button>
+  </nav>
+  <script src="app.js"></script>
+</body>
+</html>
