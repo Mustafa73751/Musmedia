@@ -25,13 +25,42 @@
         <button class="avatar">M</button>
       </header>
 
-      <section id="home" class="page active-page">
+      <section id="home" class="page active-page home-page">
+        <div class="home-hero">
+          <div>
+            <h1>Your MusMedia feed</h1>
+            <p>Real social posts, creators and accounts — all in one place.</p>
+          </div>
+          <a class="account-tag" href="https://www.instagram.com/mzzt4f4/" target="_blank" rel="noopener noreferrer">@mzzt4f4 ↗</a>
+        </div>
+
         <div class="stories">
           <div class="story add-story">＋<small>Your story</small></div>
-          <div class="story"><div class="story-img a">A</div><small>Amir</small></div>
-          <div class="story"><div class="story-img b">S</div><small>Sam</small></div>
-          <div class="story"><div class="story-img c">J</div><small>Jay</small></div>
-          <div class="story"><div class="story-img d">N</div><small>Noah</small></div>
+          <div class="story"><div class="story-img photo-story" style="background-image:url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=180&q=80')"></div><small>Music</small></div>
+          <div class="story"><div class="story-img photo-story" style="background-image:url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=180&q=80')"></div><small>Football</small></div>
+          <div class="story"><div class="story-img photo-story" style="background-image:url('https://images.unsplash.com/photo-1518065896235-a4c93e088e7?auto=format&fit=crop&w=180&q=80')"></div><small>Motivation</small></div>
+          <div class="story"><div class="story-img photo-story" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=180&q=80')"></div><small>Basketball</small></div>
+        </div>
+
+        <div class="home-section-head"><div><h2>Instagram-style feed</h2><p>Public account previews and posts.</p></div></div>
+        <div class="instagram-feed">
+          <article class="ig-post">
+            <div class="ig-head"><div class="ig-avatar" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80')"></div><div><b>@mzzt4f4</b><small>Instagram account</small></div><a href="https://www.instagram.com/mzzt4f4/" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+            <div class="ig-image" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85')"></div>
+            <div class="ig-actions">♡ &nbsp; ♧ &nbsp; ⤴</div><div class="ig-caption"><b>@mzzt4f4</b> Welcome to my MusMedia feed 🔥</div>
+          </article>
+          <article class="ig-post">
+            <div class="ig-head"><div class="ig-avatar" style="background-image:url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=120&q=80')"></div><div><b>Football community</b><small>Public account preview</small></div><a href="https://www.instagram.com/championsleague/" target="_blank" rel="noopener noreferrer">View ↗</a></div>
+            <div class="ig-image" style="background-image:url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85')"></div>
+            <div class="ig-actions">♡ &nbsp; ♧ &nbsp; ⤴</div><div class="ig-caption"><b>Football</b> Matchday energy ⚽🔥</div>
+          </article>
+        </div>
+
+        <div class="home-section-head"><div><h2>Popular accounts</h2><p>Open the original account on Instagram.</p></div></div>
+        <div class="account-row">
+          <a href="https://www.instagram.com/mzzt4f4/" target="_blank" rel="noopener noreferrer" class="account-card"><div class="ig-avatar photo-avatar" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80')"></div><b>@mzzt4f4</b><small>Instagram</small></a>
+          <a href="https://www.instagram.com/championsleague/" target="_blank" rel="noopener noreferrer" class="account-card"><div class="ig-avatar">⚽</div><b>@championsleague</b><small>Football</small></a>
+          <a href="https://www.instagram.com/playboicarti/" target="_blank" rel="noopener noreferrer" class="account-card"><div class="ig-avatar">🎵</div><b>@playboicarti</b><small>Music</small></a>
         </div>
 
         <div id="feed"></div>
@@ -43,109 +72,29 @@
       </section>
 
 
-      <section id="media" class="page">
+      <section id="media" class="page media-page">
         <div class="page-title">
-          <h1>Media Hub</h1>
-          <p>Watch and open content from YouTube, Instagram and TikTok in one place.</p>
+          <h1>Media Feed</h1>
+          <p>Music, Islam, basketball, motivation, football, memes and more.</p>
         </div>
 
-        <div class="media-note">
-          <b>MusMedia Media Hub</b>
-          <span>Videos play through the platforms' official players. Instagram and TikTok posts open on their original platforms.</span>
+        <div class="media-search-box">
+          <div class="youtube-search">▶</div>
+          <input id="youtubeSearch" placeholder="Search millions of YouTube videos...">
+          <button class="primary" id="youtubeSearchBtn">Search</button>
+        </div>
+        <div class="media-search-note">Add your YouTube Data API key in <code>app.js</code> to return live YouTube search results. Without a key, the button opens the official YouTube search.</div>
+
+        <div class="media-tabs" id="mediaTabs">
+          <button class="active" data-query="">For You</button>
+          <button data-query="Islam motivation">Islam</button>
+          <button data-query="basketball motivation">Basketball</button>
+          <button data-query="football memes">Football</button>
+          <button data-query="Playboi Carti Teen X">Music</button>
+          <button data-query="Pierre Bourne TLOP 4">Rap</button>
         </div>
 
-        <div class="media-section-title">
-          <h2>YouTube</h2>
-          <span>Official / embeddable videos</span>
-        </div>
-
-        <div class="media-grid">
-          <article class="media-card">
-            <div class="embed-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/GRoa6w-wnT4"
-                title="Playboi Carti - R.I.P."
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-            <div class="media-card-body">
-              <b>Playboi Carti — R.I.P.</b>
-              <small>Official artist channel · Die Lit</small>
-            </div>
-          </article>
-
-          <article class="media-card">
-            <div class="embed-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/j3EwWAMWM6Q"
-                title="Playboi Carti - Shoota"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-            <div class="media-card-body">
-              <b>Playboi Carti — Shoota</b>
-              <small>Official artist channel · Die Lit</small>
-            </div>
-          </article>
-
-          <article class="media-card">
-            <div class="embed-wrap">
-              <iframe
-                src="https://www.youtube.com/embed/-fh8XeuBfz0"
-                title="UEFA Champions League video"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
-            </div>
-            <div class="media-card-body">
-              <b>UEFA Champions League</b>
-              <small>Official UEFA YouTube content</small>
-            </div>
-          </article>
-        </div>
-
-        <div class="media-section-title">
-          <h2>Instagram & TikTok</h2>
-          <span>Open the original post</span>
-        </div>
-
-        <div class="social-link-grid">
-          <a class="social-card instagram" href="https://www.instagram.com/championsleague/" target="_blank" rel="noopener noreferrer">
-            <div class="social-icon">◎</div>
-            <div><b>Champions League on Instagram</b><small>Official UEFA account</small></div>
-            <strong>↗</strong>
-          </a>
-
-          <a class="social-card tiktok" href="https://www.tiktok.com/@uefa" target="_blank" rel="noopener noreferrer">
-            <div class="social-icon">♪</div>
-            <div><b>UEFA on TikTok</b><small>Open TikTok content</small></div>
-            <strong>↗</strong>
-          </a>
-
-          <a class="social-card instagram" href="https://www.instagram.com/playboicarti/" target="_blank" rel="noopener noreferrer">
-            <div class="social-icon">◎</div>
-            <div><b>Playboi Carti on Instagram</b><small>Open the artist's posts</small></div>
-            <strong>↗</strong>
-          </a>
-
-          <a class="social-card tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
-            <div class="social-icon">♪</div>
-            <div><b>TikTok</b><small>Browse dance and trending videos</small></div>
-            <strong>↗</strong>
-          </a>
-        </div>
-
-        <div class="add-media-card">
-          <h3>Add a public social post</h3>
-          <p>Paste a public YouTube, Instagram or TikTok URL and MusMedia will add it to your Media Hub.</p>
-          <form id="socialLinkForm" class="social-form">
-            <input id="socialUrl" type="url" placeholder="Paste a public post/video URL..." required>
-            <button class="primary" type="submit">Add link</button>
-          </form>
-          <div id="customSocialLinks"></div>
-        </div>
+        <div class="media-grid" id="mediaGrid"></div>
       </section>
 
       <section id="messages" class="page">

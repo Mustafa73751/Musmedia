@@ -1,28 +1,33 @@
 # MusMedia
 
-A mobile-friendly social-media prototype.
+MusMedia is a social-media style front-end prototype with a photo-first Home feed and a YouTube-powered Media Feed.
 
-## Run it
-Open `index.html` in a browser, or use a local server such as VS Code Live Server.
+## What's in this version
+- Home feed with photo cards and real account links
+- @mzzt4f4 Instagram account link
+- Popular account cards for football/music/community accounts
+- Media Feed with 5 video cards across on desktop
+- Categories: For You, Islam, Basketball, Football, Music and Rap
+- YouTube embeds using the official YouTube player
+- YouTube search box
+- Live YouTube search support when a YouTube Data API v3 key is added in `app.js`
+- Pagination / Load more for live YouTube search results
+- GitHub Pages friendly static files
 
-## Current prototype
-- Home feed
-- Stories UI
-- Likes
-- Create a post
-- Image/video file selection UI
-- Discover grid
-- Messaging UI
-- Profile page
-- Responsive mobile navigation
+## YouTube search setup
+The official YouTube Data API is required for live in-site search. Add a restricted browser API key here in `app.js`:
 
-## Important
-This is the front-end prototype. Real accounts, persistent posts, real video uploads, real-time messaging, notifications, and voice/video calls require a backend and database.
+`const YOUTUBE_API_KEY = "YOUR_KEY_HERE";`
 
-## Suggested production stack
-- Frontend: React / Next.js
-- Backend: Node.js
-- Database/auth: Supabase or Firebase
-- File storage: Supabase Storage / Cloudinary
-- Calls: WebRTC with a signaling service
-- Hosting: Vercel / Cloudflare Pages
+Restrict the key to your GitHub Pages site and only the APIs you need. Without a key, the search button opens the matching search on YouTube itself.
+
+## GitHub Pages
+Upload these four files directly into the root of your repository:
+- `index.html`
+- `style.css`
+- `app.js`
+- `README.md`
+
+Do not upload the ZIP itself. In GitHub Pages use:
+- Branch: `main`
+- Folder: `/ (root)`

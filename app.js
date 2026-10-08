@@ -52,43 +52,80 @@ document.getElementById("searchInput").addEventListener("input",e=>{
 renderPosts();
 document.getElementById("discoverGrid").innerHTML=["🎬","⚽","🌆","🎮","🏆","🎵","🔥","📸","✈️"].map(x=>`<div>${x}</div>`).join("");
 
-const socialLinkForm = document.getElementById("socialLinkForm");
-const socialUrl = document.getElementById("socialUrl");
-const customSocialLinks = document.getElementById("customSocialLinks");
+// ---------------- YouTube Media Feed ----------------
+// Optional: put a YouTube Data API v3 key here for live search results.
+// Never use a secret/private key. A browser-visible API key should be restricted to your GitHub Pages domain.
+const YOUTUBE_API_KEY = "";
 
-function renderCustomSocialLinks(){
-  const links = JSON.parse(localStorage.getItem("musmediaSocialLinks") || "[]");
-  customSocialLinks.innerHTML = links.map((url,i)=>`
-    <div class="custom-link">
-      <a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>
-      <button type="button" onclick="removeSocialLink(${i})">✕</button>
-    </div>`).join("");
+const mediaGrid = document.getElementById("mediaGrid");
+const youtubeSearch = document.getElementById("youtubeSearch");
+const youtubeSearchBtn = document.getElementById("youtubeSearchBtn");
+const mediaTabs = document.getElementById("mediaTabs");
+let youtubeNextPageToken = "";
+let lastYouTubeQuery = "";
+
+const starterVideos = [
+  {id:"GRoa6w-wnT4", title:"Playboi Carti — R.I.P.", meta:"Music · Official artist channel"},
+  {id:"j3EwWAMWM6Q", title:"Playboi Carti — Shoota", meta:"Music · Official artist channel"},
+  {id:"-fh8XeuBfz0", title:"UEFA Champions League", meta:"Football · Official UEFA"},
+  {id:"M7lc1UVf-VE", title:"YouTube Player API demo", meta:"YouTube · Demo"},
+  {id:"dQw4w9WgXcQ", title:"Music video", meta:"YouTube · Music"},
+  {id:"aqz-KE-bpKQ", title:"Motivation / inspiration", meta:"YouTube · Motivation"},
+  {id:"ScMzIvxBSi4", title:"Basketball video", meta:"YouTube · Basketball"},
+  {id:"kJQP7kiw5Fk", title:"Popular music", meta:"YouTube · Music"},
+  {id:"9bZkp7q19f0", title:"Viral video", meta:"YouTube · Entertainment"},
+  {id:"L_jWHffIx5E", title:"Classic music", meta:"YouTube · Music"}
+];
+
+function videoCard(v){
+  return `<article class="media-card">
+    <div class="embed-wrap"><iframe src="https://www.youtube.com/embed/${encodeURIComponent(v.id)}" title="${escapeHtml(v.title)}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></div>
+    <div class="media-card-body"><b>${escapeHtml(v.title)}</b><small>${escapeHtml(v.meta || "YouTube")}</small></div>
+  </article>`;
 }
-function removeSocialLink(i){
-  const links = JSON.parse(localStorage.getItem("musmediaSocialLinks") || "[]");
-  links.splice(i,1);
-  localStorage.setItem("musmediaSocialLinks", JSON.stringify(links));
-  renderCustomSocialLinks();
+function escapeHtml(value){return String(value).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function renderStarterVideos(query=""){
+  const q=query.toLowerCase().trim();
+  const filtered=q ? starterVideos.filter(v=>(v.title+" "+v.meta).toLowerCase().includes(q)) : starterVideos;
+  mediaGrid.innerHTML=(filtered.length ? filtered : starterVideos).slice(0,10).map(videoCard).join("");
 }
-if(socialLinkForm){
-  socialLinkForm.addEventListener("submit",e=>{
-    e.preventDefault();
-    const url = socialUrl.value.trim();
-    try{
-      const parsed = new URL(url);
-      const allowed = ["youtube.com","www.youtube.com","youtu.be","instagram.com","www.instagram.com","tiktok.com","www.tiktok.com"];
-      if(!allowed.includes(parsed.hostname.toLowerCase())){
-        alert("For now, add a public YouTube, Instagram or TikTok link.");
-        return;
-      }
-      const links = JSON.parse(localStorage.getItem("musmediaSocialLinks") || "[]");
-      if(!links.includes(url)) links.unshift(url);
-      localStorage.setItem("musmediaSocialLinks", JSON.stringify(links.slice(0,10)));
-      socialUrl.value="";
-      renderCustomSocialLinks();
-    }catch{
-      alert("Please paste a valid public social-media URL.");
-    }
-  });
-  renderCustomSocialLinks();
+
+async function searchYouTube(query, append=false){
+  const clean=query.trim();
+  if(!clean) { renderStarterVideos(); return; }
+  if(!YOUTUBE_API_KEY){
+    window.open("https://www.youtube.com/results?search_query="+encodeURIComponent(clean), "_blank", "noopener,noreferrer");
+    return;
+  }
+  if(!append){youtubeNextPageToken=""; lastYouTubeQuery=clean; mediaGrid.innerHTML='<div class="media-loading">Searching YouTube...</div>';}
+  try{
+    const token=youtubeNextPageToken ? `&pageToken=${encodeURIComponent(youtubeNextPageToken)}` : "";
+    const url=`https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&maxResults=50&videoEmbeddable=true&q=${encodeURIComponent(clean)}${token}&key=${encodeURIComponent(YOUTUBE_API_KEY)}`;
+    const res=await fetch(url);
+    const data=await res.json();
+    if(!res.ok) throw new Error(data.error?.message || "YouTube search failed");
+    const results=(data.items||[]).filter(x=>x.id?.videoId).map(x=>({id:x.id.videoId,title:x.snippet.title,meta:x.snippet.channelTitle}));
+    const html=results.map(videoCard).join("");
+    if(append) mediaGrid.insertAdjacentHTML("beforeend",html); else mediaGrid.innerHTML=html || '<div class="media-loading">No videos found.</div>';
+    youtubeNextPageToken=data.nextPageToken||"";
+    let load=document.getElementById("loadMoreYouTube");
+    if(!load){load=document.createElement("button");load.id="loadMoreYouTube";load.className="primary media-load-more";mediaGrid.insertAdjacentElement("afterend",load);}
+    load.textContent=youtubeNextPageToken?"Load more YouTube videos":"No more results";
+    load.disabled=!youtubeNextPageToken;
+    load.onclick=()=>searchYouTube(lastYouTubeQuery,true);
+  }catch(err){
+    mediaGrid.innerHTML=`<div class="media-loading">${escapeHtml(err.message)}<br><small>Check your API key in app.js.</small></div>`;
+  }
 }
+if(mediaGrid){
+  renderStarterVideos();
+  youtubeSearchBtn?.addEventListener("click",()=>searchYouTube(youtubeSearch.value));
+  youtubeSearch?.addEventListener("keydown",e=>{if(e.key==="Enter")searchYouTube(youtubeSearch.value)});
+  mediaTabs?.querySelectorAll("button").forEach(btn=>btn.addEventListener("click",()=>{
+    mediaTabs.querySelectorAll("button").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const q=btn.dataset.query||"";
+    if(q && YOUTUBE_API_KEY) searchYouTube(q); else renderStarterVideos(q);
+  }));
+}
+
