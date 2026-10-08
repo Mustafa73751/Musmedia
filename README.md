@@ -1,33 +1,19 @@
-# MusMedia
+# MusMedia V5
 
-MusMedia is a social-media style front-end prototype with a photo-first Home feed and a YouTube-powered Media Feed.
+MusMedia is a front-end social/media prototype designed for GitHub Pages.
 
-## What's in this version
-- Home feed with photo cards and real account links
-- @mzzt4f4 Instagram account link
-- Popular account cards for football/music/community accounts
-- Media Feed with 5 video cards across on desktop
-- Categories: For You, Islam, Basketball, Football, Music and Rap
-- YouTube embeds using the official YouTube player
-- YouTube search box
-- Live YouTube search support when a YouTube Data API v3 key is added in `app.js`
-- Pagination / Load more for live YouTube search results
-- GitHub Pages friendly static files
+## V5 changes
+- Home feed contains no fabricated posts/accounts.
+- Messages contains no fabricated chats.
+- Profile editor, follower counter/list UI and dark/light mode.
+- Five-column desktop YouTube media discovery wall with infinite paging when the YouTube Data API is configured.
+- YouTube search renders embedded videos inside MusMedia.
+- Google / Apple / Facebook sign-in buttons are ready for a real OAuth backend.
+- Special offer UI with Apple Pay, Google Pay and card options. Production payments must use a secure payment processor; never store raw card details in MusMedia.
 
-## YouTube search setup
-The official YouTube Data API is required for live in-site search. Add a restricted browser API key here in `app.js`:
+## What still needs production credentials
+GitHub Pages is static hosting. For real authentication, followers, posts and account data, connect an auth/database provider such as Supabase/Firebase and configure Google, Apple and Facebook OAuth credentials. The current `app.js` contains placeholders rather than pretending authentication is live.
 
-`const YOUTUBE_API_KEY = "YOUR_KEY_HERE";`
+For YouTube search, add a restricted YouTube Data API v3 browser key to `YOUTUBE_API_KEY` in `app.js`. Restrict the key to your GitHub Pages domain and enable only the required API.
 
-Restrict the key to your GitHub Pages site and only the APIs you need. Without a key, the search button opens the matching search on YouTube itself.
-
-## GitHub Pages
-Upload these four files directly into the root of your repository:
-- `index.html`
-- `style.css`
-- `app.js`
-- `README.md`
-
-Do not upload the ZIP itself. In GitHub Pages use:
-- Branch: `main`
-- Folder: `/ (root)`
+For payments, use a payment processor/checkout flow and configure Apple Pay/Google Pay through that provider. Do not collect or store raw card numbers in this static front end.

@@ -16,61 +16,45 @@
       <button class="nav" data-page="messages">✉ <span>Messages</span></button>
       <button class="nav" data-page="create">＋ <span>Create</span></button>
       <button class="nav" data-page="profile">◉ <span>Profile</span></button>
+      <button class="nav" data-page="settings">⚙ <span>Settings</span></button>
     </aside>
 
     <main>
       <header class="topbar">
         <div class="mobile-logo">Mus<span>Media</span></div>
         <div class="search">⌕ <input id="searchInput" placeholder="Search MusMedia"></div>
-        <button class="avatar">M</button>
+        <button class="avatar" id="topAvatar">M</button>
       </header>
 
       <section id="home" class="page active-page home-page">
         <div class="home-hero">
-          <div>
-            <h1>Your MusMedia feed</h1>
-            <p>Real social posts, creators and accounts — all in one place.</p>
-          </div>
-          <a class="account-tag" href="https://www.instagram.com/mzzt4f4/" target="_blank" rel="noopener noreferrer">@mzzt4f4 ↗</a>
+          <div><h1>Your MusMedia feed</h1><p>Posts from people you actually follow — no invented accounts.</p></div>
+          <button class="account-tag" id="homeSignInBtn">Sign in to build your feed</button>
         </div>
-
-        <div class="stories">
-          <div class="story add-story">＋<small>Your story</small></div>
-          <div class="story"><div class="story-img photo-story" style="background-image:url('https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=180&q=80')"></div><small>Music</small></div>
-          <div class="story"><div class="story-img photo-story" style="background-image:url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=180&q=80')"></div><small>Football</small></div>
-          <div class="story"><div class="story-img photo-story" style="background-image:url('https://images.unsplash.com/photo-1518065896235-a4c93e088e7?auto=format&fit=crop&w=180&q=80')"></div><small>Motivation</small></div>
-          <div class="story"><div class="story-img photo-story" style="background-image:url('https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=180&q=80')"></div><small>Basketball</small></div>
+        <div class="stories"><div class="story add-story">＋<small>Your story</small></div></div>
+        <div class="empty-state home-empty">
+          <div class="empty-icon">⌂</div>
+          <h2>Your feed is waiting</h2>
+          <p>MusMedia only shows real connected accounts here. Sign in, follow people and their posts will appear in your Home feed.</p>
+          <div class="empty-actions"><button class="primary" id="homeDiscoverBtn">Discover</button><button class="outline" id="homeSignInBtn2">Sign in</button></div>
         </div>
-
-        <div class="home-section-head"><div><h2>Instagram-style feed</h2><p>Public account previews and posts.</p></div></div>
-        <div class="instagram-feed">
-          <article class="ig-post">
-            <div class="ig-head"><div class="ig-avatar" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80')"></div><div><b>@mzzt4f4</b><small>Instagram account</small></div><a href="https://www.instagram.com/mzzt4f4/" target="_blank" rel="noopener noreferrer">View ↗</a></div>
-            <div class="ig-image" style="background-image:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=900&q=85')"></div>
-            <div class="ig-actions">♡ &nbsp; ♧ &nbsp; ⤴</div><div class="ig-caption"><b>@mzzt4f4</b> Welcome to my MusMedia feed 🔥</div>
-          </article>
-          <article class="ig-post">
-            <div class="ig-head"><div class="ig-avatar" style="background-image:url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=120&q=80')"></div><div><b>Football community</b><small>Public account preview</small></div><a href="https://www.instagram.com/championsleague/" target="_blank" rel="noopener noreferrer">View ↗</a></div>
-            <div class="ig-image" style="background-image:url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=85')"></div>
-            <div class="ig-actions">♡ &nbsp; ♧ &nbsp; ⤴</div><div class="ig-caption"><b>Football</b> Matchday energy ⚽🔥</div>
-          </article>
-        </div>
-
-        <div class="home-section-head"><div><h2>Popular accounts</h2><p>Open the original account on Instagram.</p></div></div>
-        <div class="account-row">
-          <a href="https://www.instagram.com/mzzt4f4/" target="_blank" rel="noopener noreferrer" class="account-card"><div class="ig-avatar photo-avatar" style="background-image:url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=120&q=80')"></div><b>@mzzt4f4</b><small>Instagram</small></a>
-          <a href="https://www.instagram.com/championsleague/" target="_blank" rel="noopener noreferrer" class="account-card"><div class="ig-avatar">⚽</div><b>@championsleague</b><small>Football</small></a>
-          <a href="https://www.instagram.com/playboicarti/" target="_blank" rel="noopener noreferrer" class="account-card"><div class="ig-avatar">🎵</div><b>@playboicarti</b><small>Music</small></a>
-        </div>
-
-        <div id="feed"></div>
+        <div class="home-section-head"><div><h2>Your connected accounts</h2><p>Only accounts you have actually connected are shown.</p></div></div>
+        <div class="connected-accounts" id="connectedAccounts"><div class="connected-empty">No social accounts connected yet.</div></div>
       </section>
 
       <section id="discover" class="page">
-        <div class="page-title"><h1>Discover</h1><p>Find people and content you might like.</p></div>
+        <div class="page-title"><h1>Discover</h1><p>Explore real connected creators, topics and videos.</p></div>
+        <div class="discover-tools">
+          <input id="discoverSearch" placeholder="Search creators or topics...">
+          <div class="discover-tabs"><button class="active" data-discover="all">All</button><button data-discover="people">People</button><button data-discover="topics">Topics</button></div>
+        </div>
         <div class="discover-grid" id="discoverGrid"></div>
+        <div class="empty-state small-empty" id="discoverEmpty">
+          <div class="empty-icon">⌕</div><h2>Connect an account to discover real people</h2>
+          <p>No fake accounts are shown here. Once authentication and your social connections are configured, this section can display real profiles.</p>
+          <button class="primary" id="openSignInFromDiscover">Sign in</button>
+        </div>
       </section>
-
 
       <section id="media" class="page media-page">
         <div class="page-title">
@@ -80,10 +64,10 @@
 
         <div class="media-search-box">
           <div class="youtube-search">▶</div>
-          <input id="youtubeSearch" placeholder="Search millions of YouTube videos...">
+          <input id="youtubeSearch" placeholder="Search YouTube videos — results play here...">
           <button class="primary" id="youtubeSearchBtn">Search</button>
         </div>
-        <div class="media-search-note">Add your YouTube Data API key in <code>app.js</code> to return live YouTube search results. Without a key, the button opens the official YouTube search.</div>
+        <div class="media-search-note">Five videos per row. Scroll down for more. YouTube results stay inside MusMedia when the YouTube Data API is connected.</div>
 
         <div class="media-tabs" id="mediaTabs">
           <button class="active" data-query="">For You</button>
@@ -98,20 +82,12 @@
       </section>
 
       <section id="messages" class="page">
-        <div class="page-title"><h1>Messages</h1><p>Chat with your friends.</p></div>
-        <div class="messages-layout">
-          <div class="chat-list">
-            <button class="chat active" data-name="Amir"><div class="mini-avatar a">A</div><div><b>Amir</b><small>Yo, you seen this?</small></div></button>
-            <button class="chat" data-name="Sam"><div class="mini-avatar b">S</div><div><b>Sam</b><small>That post was cold 😂</small></div></button>
-            <button class="chat" data-name="Jay"><div class="mini-avatar c">J</div><div><b>Jay</b><small>Football tomorrow?</small></div></button>
-          </div>
-          <div class="chat-window">
-            <div class="chat-header"><div class="mini-avatar a">A</div><b id="chatName">Amir</b></div>
-            <div class="chat-body" id="chatBody">
-              <div class="bubble other">Yo bro 👊</div><div class="bubble other">You seen the new post?</div><div class="bubble mine">Yeah 😂 MusMedia is looking cold</div>
-            </div>
-            <form id="messageForm" class="message-box"><input id="messageInput" placeholder="Message..."><button>Send</button></form>
-          </div>
+        <div class="page-title"><h1>Messages</h1><p>Your real conversations will appear here after you connect an account.</p></div>
+        <div class="empty-state">
+          <div class="empty-icon">✉</div>
+          <h2>No conversations yet</h2>
+          <p>MusMedia won't invent chats or fake people. Sign in and follow real accounts to start messaging.</p>
+          <button class="primary" data-page="discover">Discover people</button>
         </div>
       </section>
 
@@ -129,19 +105,39 @@
       <section id="profile" class="page">
         <div class="profile-head">
           <div class="profile-avatar">M</div>
-          <div><h1>Mustafa</h1><p>@musmediauser</p><div class="stats"><b>24 <span>Posts</span></b><b>312 <span>Followers</span></b><b>184 <span>Following</span></b></div></div>
-          <button class="outline">Edit profile</button>
+          <div class="profile-main"><h1 id="profileName">Mustafa</h1><p id="profileHandle">@musmediauser</p><div class="stats"><button id="postsStat"><b>0</b><span>Posts</span></button><button id="followersStat"><b id="followersCount">0</b><span>Followers</span></button><button id="followingStat"><b id="followingCount">0</b><span>Following</span></button></div></div>
+          <div class="profile-actions"><button class="outline" id="editProfileBtn">Edit profile</button><button class="outline" id="themeBtn">☾ Dark mode</button><button class="primary" id="profileSignInBtn">Sign in</button></div>
         </div>
+        <div class="profile-editor" id="profileEditor" hidden>
+          <input id="editName" placeholder="Display name">
+          <input id="editHandle" placeholder="Username">
+          <textarea id="editBio" placeholder="Bio"></textarea>
+          <div><button class="primary" id="saveProfileBtn">Save profile</button> <button class="outline" id="cancelProfileBtn">Cancel</button></div>
+        </div>
+        <div class="followers-panel" id="followersPanel" hidden><h3>Your followers</h3><p id="followersEmpty">No followers yet. Your follower list will appear here when real users follow you.</p><div id="followersList"></div></div>
         <div class="profile-tabs"><b>Posts</b><b>Videos</b><b>Tagged</b></div>
-        <div class="profile-grid">
-          <div>🎬</div><div>🏆</div><div>⚽</div><div>🌆</div><div>🎥</div><div>🔥</div>
+        <div class="profile-grid" id="profileGrid"><div class="empty-profile">Your posts will appear here.</div></div>
+      </section>
+
+      <section id="settings" class="page">
+        <div class="page-title"><h1>Account & payments</h1><p>Secure account connections and membership options.</p></div>
+        <div class="settings-card">
+          <h2>Sign in</h2><p>Use a real authentication provider. No fake login screens.</p>
+          <div class="auth-buttons"><button class="auth google" data-provider="google">G Continue with Google</button><button class="auth apple" data-provider="apple"> Continue with Apple</button><button class="auth facebook" data-provider="facebook">f Continue with Facebook</button></div>
+          <small>Production sign-in requires configuring OAuth credentials with your auth provider.</small>
+        </div>
+        <div class="offers-card">
+          <div class="offer-head"><div><span class="offer-badge">SPECIAL OFFER</span><h2>MusMedia Plus</h2><p>Extra profile customisation, creator tools and priority features.</p></div><strong>£2.99</strong></div>
+          <div class="offer-options"><button class="pay-option"> Apple Pay</button><button class="pay-option">G Google Pay</button><button class="pay-option">▣ Card</button></div>
+          <small>Payments should be handled by a secure payment provider; MusMedia should never store raw card details.</small>
         </div>
       </section>
     </main>
   </div>
   <nav class="bottom-nav">
-    <button class="nav active" data-page="home">⌂</button><button class="nav" data-page="discover">⌕</button><button class="nav" data-page="media">▶</button><button class="nav" data-page="create">＋</button><button class="nav" data-page="messages">✉</button><button class="nav" data-page="profile">◉</button>
+    <button class="nav active" data-page="home">⌂</button><button class="nav" data-page="discover">⌕</button><button class="nav" data-page="media">▶</button><button class="nav" data-page="create">＋</button><button class="nav" data-page="messages">✉</button><button class="nav" data-page="profile">◉</button><button class="nav" data-page="settings">⚙</button>
   </nav>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
 </body>
 </html>
