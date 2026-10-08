@@ -51,3 +51,44 @@ document.getElementById("searchInput").addEventListener("input",e=>{
 });
 renderPosts();
 document.getElementById("discoverGrid").innerHTML=["🎬","⚽","🌆","🎮","🏆","🎵","🔥","📸","✈️"].map(x=>`<div>${x}</div>`).join("");
+
+const socialLinkForm = document.getElementById("socialLinkForm");
+const socialUrl = document.getElementById("socialUrl");
+const customSocialLinks = document.getElementById("customSocialLinks");
+
+function renderCustomSocialLinks(){
+  const links = JSON.parse(localStorage.getItem("musmediaSocialLinks") || "[]");
+  customSocialLinks.innerHTML = links.map((url,i)=>`
+    <div class="custom-link">
+      <a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>
+      <button type="button" onclick="removeSocialLink(${i})">✕</button>
+    </div>`).join("");
+}
+function removeSocialLink(i){
+  const links = JSON.parse(localStorage.getItem("musmediaSocialLinks") || "[]");
+  links.splice(i,1);
+  localStorage.setItem("musmediaSocialLinks", JSON.stringify(links));
+  renderCustomSocialLinks();
+}
+if(socialLinkForm){
+  socialLinkForm.addEventListener("submit",e=>{
+    e.preventDefault();
+    const url = socialUrl.value.trim();
+    try{
+      const parsed = new URL(url);
+      const allowed = ["youtube.com","www.youtube.com","youtu.be","instagram.com","www.instagram.com","tiktok.com","www.tiktok.com"];
+      if(!allowed.includes(parsed.hostname.toLowerCase())){
+        alert("For now, add a public YouTube, Instagram or TikTok link.");
+        return;
+      }
+      const links = JSON.parse(localStorage.getItem("musmediaSocialLinks") || "[]");
+      if(!links.includes(url)) links.unshift(url);
+      localStorage.setItem("musmediaSocialLinks", JSON.stringify(links.slice(0,10)));
+      socialUrl.value="";
+      renderCustomSocialLinks();
+    }catch{
+      alert("Please paste a valid public social-media URL.");
+    }
+  });
+  renderCustomSocialLinks();
+}

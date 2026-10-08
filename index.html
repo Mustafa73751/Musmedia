@@ -12,6 +12,7 @@
       <div class="logo">Mus<span>Media</span></div>
       <button class="nav active" data-page="home">⌂ <span>Home</span></button>
       <button class="nav" data-page="discover">⌕ <span>Discover</span></button>
+      <button class="nav" data-page="media">▶ <span>Media Hub</span></button>
       <button class="nav" data-page="messages">✉ <span>Messages</span></button>
       <button class="nav" data-page="create">＋ <span>Create</span></button>
       <button class="nav" data-page="profile">◉ <span>Profile</span></button>
@@ -39,6 +40,112 @@
       <section id="discover" class="page">
         <div class="page-title"><h1>Discover</h1><p>Find people and content you might like.</p></div>
         <div class="discover-grid" id="discoverGrid"></div>
+      </section>
+
+
+      <section id="media" class="page">
+        <div class="page-title">
+          <h1>Media Hub</h1>
+          <p>Watch and open content from YouTube, Instagram and TikTok in one place.</p>
+        </div>
+
+        <div class="media-note">
+          <b>MusMedia Media Hub</b>
+          <span>Videos play through the platforms' official players. Instagram and TikTok posts open on their original platforms.</span>
+        </div>
+
+        <div class="media-section-title">
+          <h2>YouTube</h2>
+          <span>Official / embeddable videos</span>
+        </div>
+
+        <div class="media-grid">
+          <article class="media-card">
+            <div class="embed-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/GRoa6w-wnT4"
+                title="Playboi Carti - R.I.P."
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+            <div class="media-card-body">
+              <b>Playboi Carti — R.I.P.</b>
+              <small>Official artist channel · Die Lit</small>
+            </div>
+          </article>
+
+          <article class="media-card">
+            <div class="embed-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/j3EwWAMWM6Q"
+                title="Playboi Carti - Shoota"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+            <div class="media-card-body">
+              <b>Playboi Carti — Shoota</b>
+              <small>Official artist channel · Die Lit</small>
+            </div>
+          </article>
+
+          <article class="media-card">
+            <div class="embed-wrap">
+              <iframe
+                src="https://www.youtube.com/embed/-fh8XeuBfz0"
+                title="UEFA Champions League video"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+            </div>
+            <div class="media-card-body">
+              <b>UEFA Champions League</b>
+              <small>Official UEFA YouTube content</small>
+            </div>
+          </article>
+        </div>
+
+        <div class="media-section-title">
+          <h2>Instagram & TikTok</h2>
+          <span>Open the original post</span>
+        </div>
+
+        <div class="social-link-grid">
+          <a class="social-card instagram" href="https://www.instagram.com/championsleague/" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon">◎</div>
+            <div><b>Champions League on Instagram</b><small>Official UEFA account</small></div>
+            <strong>↗</strong>
+          </a>
+
+          <a class="social-card tiktok" href="https://www.tiktok.com/@uefa" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon">♪</div>
+            <div><b>UEFA on TikTok</b><small>Open TikTok content</small></div>
+            <strong>↗</strong>
+          </a>
+
+          <a class="social-card instagram" href="https://www.instagram.com/playboicarti/" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon">◎</div>
+            <div><b>Playboi Carti on Instagram</b><small>Open the artist's posts</small></div>
+            <strong>↗</strong>
+          </a>
+
+          <a class="social-card tiktok" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer">
+            <div class="social-icon">♪</div>
+            <div><b>TikTok</b><small>Browse dance and trending videos</small></div>
+            <strong>↗</strong>
+          </a>
+        </div>
+
+        <div class="add-media-card">
+          <h3>Add a public social post</h3>
+          <p>Paste a public YouTube, Instagram or TikTok URL and MusMedia will add it to your Media Hub.</p>
+          <form id="socialLinkForm" class="social-form">
+            <input id="socialUrl" type="url" placeholder="Paste a public post/video URL..." required>
+            <button class="primary" type="submit">Add link</button>
+          </form>
+          <div id="customSocialLinks"></div>
+        </div>
       </section>
 
       <section id="messages" class="page">
@@ -84,7 +191,7 @@
     </main>
   </div>
   <nav class="bottom-nav">
-    <button class="nav active" data-page="home">⌂</button><button class="nav" data-page="discover">⌕</button><button class="nav" data-page="create">＋</button><button class="nav" data-page="messages">✉</button><button class="nav" data-page="profile">◉</button>
+    <button class="nav active" data-page="home">⌂</button><button class="nav" data-page="discover">⌕</button><button class="nav" data-page="media">▶</button><button class="nav" data-page="create">＋</button><button class="nav" data-page="messages">✉</button><button class="nav" data-page="profile">◉</button>
   </nav>
   <script src="app.js"></script>
 </body>
