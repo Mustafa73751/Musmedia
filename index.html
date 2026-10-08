@@ -17,6 +17,7 @@
       <button class="nav" data-page="create">＋ <span>Create</span></button>
       <button class="nav" data-page="profile">◉ <span>Profile</span></button>
       <button class="nav" data-page="settings">⚙ <span>Settings</span></button>
+      <button class="nav owner-nav" data-page="dashboard">▦ <span>Dashboard</span></button>
     </aside>
 
     <main>
@@ -67,7 +68,7 @@
           <input id="youtubeSearch" placeholder="Search YouTube videos — results play here...">
           <button class="primary" id="youtubeSearchBtn">Search</button>
         </div>
-        <div class="media-search-note">Five videos per row. Scroll down for more. YouTube results stay inside MusMedia when the YouTube Data API is connected.</div>
+        <div class="media-search-note">Vertical video feed. One video at a time, built for continuous scrolling like Shorts/TikTok. YouTube results stay inside MusMedia when the YouTube Data API is connected.</div>
 
         <div class="media-tabs" id="mediaTabs">
           <button class="active" data-query="">For You</button>
@@ -79,6 +80,13 @@
         </div>
 
         <div class="media-grid" id="mediaGrid"></div>
+      </section>
+
+      <section id="dashboard" class="page dashboard-page">
+        <div class="page-title"><h1>Creator Dashboard</h1><p>Owner tools and business overview.</p></div>
+        <div class="dashboard-banner"><b>Owner dashboard</b><span>Prototype only — connect secure authentication and your payment provider before using real financial data.</span></div>
+        <div class="dashboard-stats"><div><small>Revenue</small><strong>£0.00</strong></div><div><small>Followers</small><strong id="dashFollowers">0</strong></div><div><small>Posts</small><strong id="dashPosts">0</strong></div><div><small>Views</small><strong>0</strong></div></div>
+        <div class="dashboard-grid"><div class="dashboard-card"><h2>Money</h2><p>When payments are connected, this is where your payout and transaction overview can live.</p><button class="primary" data-page="settings">Payment settings</button></div><div class="dashboard-card"><h2>Content</h2><p>Manage your uploads, moderation queue and creator analytics.</p><button class="outline" data-page="create">Create content</button></div><div class="dashboard-card"><h2>Account</h2><p>Manage your owner profile and connected services.</p><button class="outline" data-page="profile">View profile</button></div></div>
       </section>
 
       <section id="messages" class="page">
@@ -135,7 +143,7 @@
     </main>
   </div>
   <nav class="bottom-nav">
-    <button class="nav active" data-page="home">⌂</button><button class="nav" data-page="discover">⌕</button><button class="nav" data-page="media">▶</button><button class="nav" data-page="create">＋</button><button class="nav" data-page="messages">✉</button><button class="nav" data-page="profile">◉</button><button class="nav" data-page="settings">⚙</button>
+    <button class="nav active" data-page="home">⌂</button><button class="nav" data-page="discover">⌕</button><button class="nav" data-page="media">▶</button><button class="nav" data-page="create">＋</button><button class="nav" data-page="messages">✉</button><button class="nav" data-page="profile">◉</button><button class="nav" data-page="settings">⚙</button><button class="nav owner-nav" data-page="dashboard">▦</button>
   </nav>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="app.js"></script>
